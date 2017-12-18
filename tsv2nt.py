@@ -28,10 +28,10 @@ def filter_file(tsv_file):
     tsv_fp = open(tsv_file, 'r', encoding="utf-8")
     next(tsv_fp)
     for line in tsv_fp:
-        print(line)
+        #print(line)
         if len(line.split("\t"))==6:
-            triple = "<" + "http://en.wikipedia.org/wiki?curid=" + line.split("\t")[0] + ">\t" + "<" + line.split("\t")[4] + ">\t" + line.split("\t")[5].strip("\n") + " .\n"
-            print("%s"%(triple))
+            triple = "<http://en.wikipedia.org/wiki?curid=" + line.split("\t")[0]  + ">\t<http://lod.openaire.eu/vocab/resOriginalID>\t\""  + line.split("\t")[5].strip("\n") + "\" .\n"
+            #print("%s"%(triple))
             nt_fp.write("%s"%(triple))
     nt_fp.close()
     tsv_fp.close()
@@ -51,4 +51,3 @@ if __name__ == "__main__":
         break
         print("Now processing file number %s named %s"%(file,tsv_files[file]))
         filter_file(file)
-
